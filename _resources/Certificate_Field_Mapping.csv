@@ -1,0 +1,99 @@
+CA_Issued_Certs-Object_Properties,Certificates_DataModel_Field_Alias,Local_Certs-Object_Properties
+Archived Key,,
+Attestation Challenge,,
+Binary Certificate,,
+Binary Precertificate,,
+Binary Public Key,,
+Binary Request,,
+Caller Name,,
+Certificate Effective Date,ssl_start_time,NotBefore
+Certificate Expiration Date,ssl_end_time,NotAfter
+Certificate Hash,ssl_hash,
+Certificate Template,,
+Effective Revocation Date,,
+Endorsment Certificate Hash,,
+Endorsement Key Hash,,
+Issued Binary Name,,
+Issued City,,
+Issued Common Name,ssl_name,FriendlyName
+Issued Country/Region,,
+Issued Device Serial Number,,
+Issued Distinguished Name,,
+Issued Domain Coupon,,
+Issued Email Address,ssl_subject_email,
+Issued First Name,,
+Issued Initials,,
+Issued Last Name,,
+Issued Organization,,
+Issued Organization Unit,,
+Issued Request ID,,
+Issued Street Address,,
+Issued State,,
+Issued Subject Key Identifier,,
+Issued Title,,
+Issued Unstructured Address,,
+Issued Unstructured Name,,
+Issuer Name ID,,
+Key Recovery Agent Hashes,,
+Officer,,
+Old Certificate,,
+Public Key Algorithm,,
+Public Key Algorithm Parameters,,
+Public Key Length,,
+Publish expired Certificate in CRL,,
+Request Attributes,,
+Request Binary Name,,
+Request City,,
+Request Common Name,,
+Request Country/Region,,
+Request Device Serial Number,,
+Request Disposition,,
+Request Disposition Message,,
+Request Distinguished Name,,
+Request Domain Component,,
+Request Email Address,,
+Request First Name,,
+Request Flags,,
+Request ID,,
+Request Initials,,
+Request Last Name,,
+Request Organization,,
+Request Organization Unit,,
+Request Resolution Date,,
+Request State,,
+Request Status Code,,
+Request Street Address,,
+Request Submission Date,,
+Request Title,,
+Request Type,,
+Request Unstructured Address,,
+Request Unstructured Name,,
+Requestor Name,,
+Revocation Date,,
+Revocation Reason,,
+Serial Number,ssl_serial,SerialNumber
+Signer Application Policies,,
+Signer Policies,,
+Template Enrollment Flags,,
+Template General Flags,,
+Template Private Key Flags,,
+User Principal Name,,
+,,PSPath
+,,PSParentPath
+,,PSChildName
+,,EnhancedKeyUsageList
+,,DnsNameList
+,,SendAsTrustedIssuer
+,,PolicyId
+,,Archived
+,,
+,,IssuerName
+,,HasPrivateKey
+,,
+,,SubjectName
+,ssl_signature_algorithm,SignatureAlgorithm
+,,Thumbprint
+,,Version
+,,Handle
+Issuer,ssl_issuer,Issuer
+,ssl_subject,Subject
