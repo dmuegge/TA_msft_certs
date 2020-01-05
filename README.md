@@ -1,18 +1,18 @@
 # TA-microsoft-certificates
  Microsoft Certificates Add-On for Splunk®
 
-##Introduction
+## Introduction
 The Microsoft Certificates add-on for Splunk® provides functionality to ingest certificate information from the certificate store on Windows servers and workstations. The add-on also allows the collection of certificate information for issued certificates from Microsoft Certificate Servers.  
 
-##Prerequisites
+## Prerequisites
 PowerShell execution policy must allow the execution of scripts on servers where data will be collected.
 
 
-##Installation
+## Installation
 Install the add-on on all search heads, install on all Windows forwarders where certificate data is to be collected. 
 
 
-##Configuration
+## Configuration
 The add-on is provided with two default inputs, which are disabled by default. It is recommended this inputs in this file be used as a template to configure inputs on forwarders as needed. See example inputs below:
 
 
@@ -39,7 +39,7 @@ The example input above will collect certificate information from the local cert
 
 
 
-##Reference Material
+## Reference Material
 
 Enabling PowerShell Execution Policy<br>
 [about-execution-policies](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6)<br>
@@ -50,7 +50,7 @@ Also, for those who may be new to PowerShell
 
 
 
-##Change History
+## Change History
 <table>
 <tr><td>Version</td><td>Changes</td></tr>
 
