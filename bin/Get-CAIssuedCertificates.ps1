@@ -457,10 +457,10 @@ foreach ($Location in $CAlocation)
             # format Binary Certificate in a savable format.
             if ($displayName -eq 'Binary Certificate') 
             {
-                $Cert | Add-Member -MemberType NoteProperty -Name $displayName -Value $($ColObj.GetValue($CV_OUT_BASE64HEADER)) -Force
+                $Cert | Add-Member -MemberType NoteProperty -Name $displayName.ToString().Replace(" ", "_") -Value $($ColObj.GetValue($CV_OUT_BASE64HEADER)) -Force
             } else 
             {
-                $Cert | Add-Member -MemberType NoteProperty -Name $displayName -Value $($ColObj.GetValue($CV_OUT_BASE64)) -Force
+                $Cert | Add-Member -MemberType NoteProperty -Name $displayName.ToString().Replace(" ", "_") -Value $($ColObj.GetValue($CV_OUT_BASE64)) -Force
             }
         }
         until ($ColObj.Next() -eq -1)
