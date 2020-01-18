@@ -4,13 +4,13 @@
     "title": "Microsoft Certificates Add-On for Splunk", 
     "id": {
       "group": null, 
-      "name": "TA-microsoft-certificates", 
+      "name": "TA_microsoft_certificates", 
       "version": "0.1.0"
     }, 
     "author": [
       {
         "name": "David Muegge", 
-        "email": "david@muegge.com", 
+        "email": null, 
         "company": null
       }
     ], 

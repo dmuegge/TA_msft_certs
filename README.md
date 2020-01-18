@@ -18,7 +18,7 @@ The add-on is provided with two default inputs, which are disabled by default. I
 
 `` [powershell://CertStore-CA-Issued] ``<br>
 `` disabled = 1 ``<br>
-`` script = . "$SplunkHome\etc\apps\TA-microsoft-certificates\bin\Get-CAIssuedCertificates.ps1" ``<br>
+`` script = . "$SplunkHome\etc\apps\TA_microsoft_certificates\bin\Get-CAIssuedCertificates.ps1" ``<br>
 `` schedule = 0 15 * * 0-6 ``<br>
 `` sourcetype = windows:certstore:ca:issued ``<br>
 `` index = win_certstore_data ``<br>
@@ -29,7 +29,7 @@ The example input above will collect issued certificates information from the lo
 
 ``[powershell://CertStore-Local] ``<br>
 ``disabled = 1 ``<br>
-``script = . "$SplunkHome\etc\apps\TA-microsoft-certificates\bin\Get-LocalStoreCertificates.ps1" ``<br>
+``script = . "$SplunkHome\etc\apps\TA_microsoft_certificates\bin\Get-LocalStoreCertificates.ps1" ``<br>
 ``schedule = 0 15 * * 0-6 ``<br>
 ``sourcetype = windows:certstore:local ``<br>
 ``index = win_certstore_data ``<br>
