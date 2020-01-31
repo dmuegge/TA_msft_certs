@@ -5,7 +5,7 @@
     "id": {
       "group": null, 
       "name": "TA_microsoft_certificates", 
-      "version": "0.1.0"
+      "version": "0.1.1"
     }, 
     "author": [
       {
@@ -15,7 +15,7 @@
       }
     ], 
     "releaseDate": null, 
-    "description": "The Microsoft Certificates Add-on for Splunk allows a Splunk\u00ae Enterprise administrator to collect data from from the local certificate store of windows forwarders. It also allows data colletion of issued certificates from Microsoft certificate servers.", 
+    "description": "The Microsoft Certificates Add-on for Splunk allows a Splunk\u00ae Enterprise administrator to collect data from from the local certificate store of windows forwarders. It also allows data collection of issued certificates from Microsoft certificate servers.", 
     "classification": {
       "intendedAudience": null, 
       "categories": [], 

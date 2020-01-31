@@ -57,6 +57,9 @@ Also, for those who may be new to PowerShell
 <tr><td>0.1.0</td>
 <td>Initial Release
 </td></tr>
+<tr><td>0.1.1</td>
+<td>Update app.conf spelling issue
+</td></tr>
 
 </table>
 
