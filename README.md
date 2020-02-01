@@ -1,4 +1,4 @@
-# TA-microsoft-certificates
+# TA\_msft\_certs
  Microsoft Certificates Add-On for Splunk®
 
 ## Introduction
@@ -58,7 +58,7 @@ Also, for those who may be new to PowerShell
 <td>Initial Release
 </td></tr>
 <tr><td>0.1.1</td>
-<td>Update app.conf spelling issue
+<td>Update app.conf naming and spelling issue
 </td></tr>
 
 </table>
