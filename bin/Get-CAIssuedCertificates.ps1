@@ -146,9 +146,13 @@ Param (
         'Issued Email Address',
         'Issued Request ID', 
         'Certificate Hash', 
+        'Serial Number',
         'Request Disposition',
         'Request Disposition Message', 
-        'Requester Name' ),
+        'Request Attributes',
+        'Request ID',
+        'Requester Name',
+        'User Principal Name' ),
 
 
     [AllowNull()]
