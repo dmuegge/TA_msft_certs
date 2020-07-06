@@ -381,7 +381,7 @@ if(-not $CAlocation){
 }
 
 #Import state from Splunk
-$State = Import-LocalStorage "CertLastID.xml" -DefaultValue (New-Object PSObject -Property @{ LastID = 0 })
+$State = Import-LocalStorage "CertLastID.xml" -DefaultValue (New-Object PSObject -Property @{ LastID = @{} })
 
 foreach ($Location in $CAlocation) 
 {
@@ -441,9 +441,9 @@ foreach ($Location in $CAlocation)
 
     #region filter last run
     $index = $CaView.GetColumnIndex($false, 'Request ID')
-    if ($State.LastId -gt 0)
+    if ($State.LastID["$Location"] -AND $State.LastID["$Location"] -gt 0)
     {
-        $CaView.SetRestriction($index,$CVR_SEEK_GT,0,$State.LastId)
+        $CaView.SetRestriction($index,$CVR_SEEK_GT,0,$State.LastId["$Location"])
     }
     #endregion last run
 
@@ -465,7 +465,7 @@ foreach ($Location in $CAlocation)
         {
             $displayName = $ColObj.GetDisplayName()
             # format Binary Certificate in a savable format.
-            if ($displayName -eq 'Binary Certificate') 
+            if ($displayName -eq 'Binary Certificate')
             {
                 $Cert | Add-Member -MemberType NoteProperty -Name $displayName.ToString().Replace(" ", "_") -Value $($ColObj.GetValue($CV_OUT_BASE64HEADER)) -Force
             }
@@ -487,12 +487,12 @@ foreach ($Location in $CAlocation)
         $Cert
 
     }
+
+    if($Cert.Request_ID)
+    {
+        $State.LastID["$Location"] = $Cert.Request_ID
+    }
 }
 
 # Export state to splunk
-if($Cert.Request_ID)
-{
-    $State.LastID = $Cert.Request_ID
-    $State | Export-LocalStorage "CertLastID.xml"
-}
-
+$State | Export-LocalStorage "CertLastID.xml"
