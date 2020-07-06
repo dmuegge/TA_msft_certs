@@ -146,9 +146,13 @@ Param (
         'Issued Email Address',
         'Issued Request ID', 
         'Certificate Hash', 
+        'Serial Number',
         'Request Disposition',
         'Request Disposition Message', 
-        'Requester Name' ),
+        'Request Attributes',
+        'Request ID',
+        'Requester Name',
+        'User Principal Name' ),
 
 
     [AllowNull()]
@@ -170,8 +174,6 @@ Param (
     [Switch]
     $ShowIssuer=$True
 ) 
-
-
 
 function Get-CertificatAuthority
 {
@@ -373,14 +375,14 @@ function Get-ADCertificateTemplate
     $result
 }
 
-
-
 if(-not $CAlocation){
 
     $CAlocation =  (get-CaLocationString)
 }
 
-    
+#Import state from Splunk
+$State = Import-LocalStorage "CertLastID.xml" -DefaultValue (New-Object PSObject -Property @{ LastID = @{} })
+
 foreach ($Location in $CAlocation) 
 {
     $CaView = New-Object -ComObject CertificateAuthority.View
@@ -437,6 +439,14 @@ foreach ($Location in $CAlocation)
     $CaView.SetRestriction($CaView.GetColumnIndex($false, 'Request Disposition'),$CVR_SEEK_EQ,0,20)
     #endregion
 
+    #region filter last run
+    $index = $CaView.GetColumnIndex($false, 'Request ID')
+    if ($State.LastID["$Location"] -AND $State.LastID["$Location"] -gt 0)
+    {
+        $CaView.SetRestriction($index,$CVR_SEEK_GT,0,$State.LastId["$Location"])
+    }
+    #endregion last run
+
     #endregion
 
     #region output each retuned row
@@ -451,24 +461,38 @@ foreach ($Location in $CAlocation)
         $Cert = New-Object -TypeName PsObject
         $ColObj = $RowObj.EnumCertViewColumn()
         $null = $ColObj.Next()
-        do 
+        do
         {
             $displayName = $ColObj.GetDisplayName()
             # format Binary Certificate in a savable format.
-            if ($displayName -eq 'Binary Certificate') 
+            if ($displayName -eq 'Binary Certificate')
             {
                 $Cert | Add-Member -MemberType NoteProperty -Name $displayName.ToString().Replace(" ", "_") -Value $($ColObj.GetValue($CV_OUT_BASE64HEADER)) -Force
-            } else 
+            }
+            elseif ($displayName -eq 'Certificate Hash')
+            {
+                $Cert | Add-Member -MemberType NoteProperty -Name $displayName.ToString().Replace(" ", "_") -Value $($ColObj.GetValue($CV_OUT_BASE64)).Replace(' ','') -Force
+            }
+            else
             {
                 $Cert | Add-Member -MemberType NoteProperty -Name $displayName.ToString().Replace(" ", "_") -Value $($ColObj.GetValue($CV_OUT_BASE64)) -Force
             }
+
         }
         until ($ColObj.Next() -eq -1)
         Clear-Variable -Name ColObj
 
         if($ShowIssuer){$Cert | Add-Member -MemberType NoteProperty -Name "Issuer" -Value $IssuerDN}
-        
+
         $Cert
 
     }
+
+    if($Cert.Request_ID)
+    {
+        $State.LastID["$Location"] = $Cert.Request_ID
+    }
 }
+
+# Export state to splunk
+$State | Export-LocalStorage "CertLastID.xml"
